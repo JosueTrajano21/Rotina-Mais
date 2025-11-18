@@ -1,0 +1,309 @@
+/*  1 parte */
+/* Estilo do header principal */
+.main-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+ background-color: #e8e2d4;
+ font-size: 14px;
+ font-family: roboto;
+ padding: 0 20px;
+}
+
+/* Menu de navegação */
+.main-nav ul {
+  display: flex;
+  align-items: center;
+  gap: 30px;           
+  list-style: none;    
+  margin: 0;
+  padding: 20px 0px;
+}
+
+/* Links do menu */
+.main-nav a {
+  text-decoration: none;
+  padding: 6px 8px;
+  color: #5a5246;
+}
+ 
+/* 2 parte */
+/* Seção principal do site com mensagem de destaque */
+.hero {
+   background-color: #f5f1e8;
+   text-align: center;
+   padding: 80px 20px;
+   color: #5a5246;
+   font-family: roboto;
+}
+
+/* Botão principal de chamada para ação */
+.cta {
+    margin-top: 30px;
+    padding: 15px 50px;
+    font-size: 18px;
+    border: none;
+    background-color: #8bb47c;
+    color: white;
+    border-radius: 40px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+/* 3 parte */
+/* Container Principal */
+.features-container {
+    
+    text-align: center;
+    background-color:rgb(255, 254, 252);
+}
+
+/* Título Principal  */
+.main-title {
+    font-size: 24;
+    font-weight: bold;
+    margin-bottom: 40px;
+    letter-spacing: 2px;
+    font-family: Roboto;
+}
+
+/* Linhas de Funcionalidades (Flex Container) */
+.features-row {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    margin-bottom: 40px;
+    font-family: Roboto;
+    color: #8a7f6d;
+}
+
+.top-row {
+    margin-bottom: 80px; /* Mais espaço entre a linha superior e inferior */ 
+}
+
+/* Item de Funcionalidade */
+.feature-item {
+    flex-basis: 30%; /* Para os 3 itens superiores */
+    padding: 20px;
+    text-align: center;
+}
+
+.secondary-item {
+    flex-basis: 40%; /* Os itens inferiores ocupam mais espaço */
+    max-width: 400px;
+}
+
+.img-placeholder{
+  width: 50%;
+  height: 50%;
+}
+
+/* 4 parte */
+
+.pricing-container {
+    background-color: #e8e2d4;
+    padding: 10px 20px;
+    font-family: roboto;
+    text-align: center;
+    min-height: 100vh;
+}
+
+.pricing-title {
+    color: #5a5246; 
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 50px;
+}
+
+/* preço */
+.plan-cards-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 50px; /* Espaço entre os cartões */
+}
+
+.plan-card {
+    height: 485px;
+    overflow: hidden;
+    background-color: #8a7f6d;
+    color: #f5f1e8;
+
+    padding: 5px 15px;
+    min-height: 320px;
+    border-radius: 20px;
+   
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.plan-header {
+    margin-bottom: 15px;
+    padding-top: 20px; 
+}
+
+.plan-name {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    margin-top: 10px;
+}
+
+.plan-slogan {
+    font-size: 13px;
+    line-height: 16px;
+    opacity: 80%;
+   font-family: roboto;
+}
+
+.plan-price {
+    
+    margin: 15px 0;
+   background: transparent;
+}
+
+.plan-price .currency {
+    font-size: 16px;;
+    font-weight: 700;
+    vertical-align: top;
+    margin-right: 5px;
+}
+
+.plan-price .value {
+    font-size: 40px; /* Tamanho grande para o valor */
+    font-weight: 700;
+    background: none;
+    color: #f5f1e8;
+}
+
+.plan-price .time {
+    font-size: 16px;
+    opacity: 80;
+    margin-left: 5px;
+}
+
+/* Botões */
+
+.plan-button {
+    
+    width: 100%;
+    height: 45px;
+    padding: 0;
+    margin-bottom: 25px;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #f5f1e8;
+}
+
+.free-button {
+    background-color: #83b47a;
+    border-radius: 40px;
+}
+
+/* Lista de Recursos */
+.plan-features {
+    font-size: 13px;
+    list-style: none;
+    padding-bottom: 6px;
+    margin-bottom: 6px;
+    text-align: left;
+    width: 100%;
+}
+
+.plan-features li {
+    font-size: 15px;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+}
+
+/* Responsividade */
+
+
+@media (max-width: 900px) {
+    .plan-cards-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+}    
+
+    /* 5 parte */
+
+.contato-container {
+    width: 1005;
+    padding: 50px 20px;
+    text-align: center;
+    font-family: roboto;
+    background-color: white;
+}
+
+.subtitulo {
+    font-size: 15px;
+    letter-spacing: 2px;
+    color: #5a5246;
+    margin-bottom: 5px;
+}
+
+.titulo {
+    font-size: 20px;
+    margin-bottom: 35px;
+    color: #5a5246;
+    font-weight: bold;
+}
+
+.form-contato {
+    width: 100%;
+}
+
+.linha {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 25px;
+    justify-content: center;
+}
+
+.campo {
+    text-align: center;
+    flex: 1;
+
+}
+
+.campo label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #5a5246;
+  
+}
+
+.campo input,
+.campo textarea {
+    width: 50%;
+    padding: 14px;
+    border: 2px solid #000;
+    border-radius: 10px;
+    font-size: 10px;
+    box-sizing: border-box;
+
+}
+
+.mensagem textarea {
+ height: 120px;
+}
+
+.botao {
+  background-color: #83b47a;
+  color: white;
+  border: none;
+  padding: 12px 40px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 18px;
+  margin-top: 20px;
+  justify-content: center;
+}

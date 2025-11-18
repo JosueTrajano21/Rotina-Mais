@@ -1,0 +1,192 @@
+<%- include('../partials/header', { titulo: 'Início', css: 'home.css'}) %>
+
+    <!-- 1 parte -->
+    <!-- Header principal do site -->
+    <header class="main-header">
+        <div>ROTINA+</div> <!-- logo -->
+        <nav class="main-nav">
+            <ul>
+                <li><a href="#">Funcionalidades</a></li>
+                <li><a href="#">Planos</a></li>
+                <li><a href="#">Dúvidas</a></li>
+                <li><a href="#">Contato</a></li>
+                <li><a href="#">Login</a></li>
+            </ul>    
+        </nav>
+    </header>
+    
+    <!-- 2 parte -->
+    <!-- Hero -->
+    <section class="hero">
+        <h1>FOCO, LEVEZA E ACOMPANHAMENTO TUDO EM UM SÓ LUGAR.</h1>
+        <br>
+        <p>Dê ritmo à sua rotina e alcance seus objetivos com foco e tranquilidade.<br> 
+        O Rotina+ ajuda você a se organizar e permite que seu psicólogo acompanhe cada conquista.</p>
+        <button class="cta">CRIAR CONTA</button>
+    </section>
+
+    <!-- 3 parte -->
+    <div class="features-container">
+        <br>
+        <!-- Título principal da seção -->
+        <h1 class="main-title">FUNCIONALIDADES</h1>
+
+        <!-- Primeira linha de funcionalidades -->
+        <div class="features-row top-row">
+
+            <!-- Item 1 -->
+            <div class="feature-item">
+                <!-- Ícone -->
+                <div><img class="img-placeholder" src="./images/calendario-anual.png" alt="calendário"></div>
+                <br>
+                
+                <h2 class="feature-title">LISTA E CALENDÁRIO</h2>
+                <br>
+                <p class="feature-description">Organize suas atividades de forma visual. Veja tudo o que precisa fazer em listas simples ou no calendário semanal.</p>
+            </div>
+            
+            <div class="feature-item">
+                <div><img class="img-placeholder" src="./images/notificacao.png" alt="notificação"></div>
+                <br>
+                <h2 class="feature-title">NOTIFICAÇÕES</h2>
+                <br>
+                <p class="feature-description">Receba lembretes automáticos e nunca mais esqueça compromissos importantes. Foco sem ansiedade e no seu tempo.</p>
+            </div>
+            
+            <div class="feature-item">
+                <div class="img-placeholder">✅</div>
+                <br>
+                <h2 class="feature-title">TAREFAS MENSAIS, SEMANAIS E DIÁRIAS</h2>
+                <br>
+                <p class="feature-description">Planeje sua rotina do jeito que preferir. Crie metas para o dia, organize a semana ou visualize o mês inteiro com clareza.</p>
+            </div>
+        </div>
+        
+        <div class="features-row bottom-row">
+
+            <div class="feature-item secondary-item">
+                <div class="img-placeholder">❌</div>
+                <br>
+                <h2 class="feature-title">TAREFA VENCIDA</h2>
+                <br>
+                <p class="feature-description">Veja o que ficou pendente e reprograme com facilidade. O Rotina+ ajuda você a retomar o ritmo sem culpa.</p>
+            </div>
+            
+            <div class="feature-item secondary-item">
+                <div class="img-placeholder">🗣</div>
+                <br>
+                <h2 class="feature-title">ACOMPANHAMENTO DO PSICÓLOGO</h2>
+                <br>
+                <p class="feature-description">Seu psicólogo acompanha sua evolução em tempo real. Juntos, vocês entendem seus hábitos e constroem uma rotina mais leve.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4 parte -->
+    <div class="pricing-container">
+        <h1 class="pricing-title">
+            GRÁTIS OU PREMIUM, ESCOLHA O MELHOR PLANO PARA VOCÊ
+        </h1>
+
+        <div class="plan-cards-wrapper">
+            
+            <!-- Cartão do Plano Gratuito -->
+            <div class="plan-card free">
+                <div class="plan-header">
+                    <h2 class="plan-name">PLANO GRATUITO</h2>
+                    <p class="plan-slogan">Comece sua jornada com foco e leveza.</p>
+                </div>
+
+                <div class="plan-price">
+                    <span class="currency">R$</span>
+                    <span class="value">0</span>
+                </div>
+
+                <button class="plan-button free-button">CRIAR CONTA</button>
+                
+                <ul class="plan-features">
+                    <li>Criação de até 10 tarefas por semana</li>
+                    <li>Acesso ao modo lista e calendário</li>
+                    <li>Notificações básicas de lembrete</li>
+                    <li>Acompanhamento psicológico limitado (1 vez por mês)</li>
+                    <li>Relatórios simples de progresso</li>
+                </ul>
+            </div>
+
+            <!-- Cartão do Plano Mensal (R$ 9,90) -->
+            <div class="plan-card monthly">
+                <div class="plan-header">
+                    <h2 class="plan-name">PLANO MENSAL</h2>
+                    <p class="plan-slogan">Para quem quer mais controle e acompanhamento constante.</p>
+                </div>
+
+                <div class="plan-price">
+                    <span class="currency">R$</span>
+                    <span class="value">9,90</span>
+                    <span class="time">/mês</span>
+                </div>
+
+                <button class="plan-button free-button">ASSINAR AGORA</button>
+
+                <ul class="plan-features">
+                    <li>Tarefas ilimitadas (diárias, semanais e mensais)</li>
+                    <li>Acesso completo ao calendário e notificações inteligentes</li>
+                    <li>Relatórios detalhados de produtividade e foco</li>
+                    <li>Acompanhamento psicológico semanal</li>
+                    <li>Personalização de temas e cores da interface</li>
+                </ul>
+            </div>
+
+            <!-- Cartão do Plano Anual (R$ 88,90/mês) -->
+            <div class="plan-card monthly-annual">
+                <div class="plan-header">
+                    <h2 class="plan-name">PLANO MENSAL</h2>
+                    <p class="plan-slogan">Para quem quer mais controle e acompanhamento constante.</p>
+                </div>
+
+                <div class="plan-price">
+                    <span class="currency">R$</span>
+                    <span class="value">88,90</span>
+                    <span class="time">/mês</span>
+                </div>
+
+                <button class="plan-button free-button">ASSINAR AGORA</button>
+
+                <ul class="plan-features">
+                    <li>Relatórios comparativos de longo prazo</li>
+                    <li>Feedbacks personalizados do psicólogo</li>
+                    <li>Acesso antecipado a novas funcionalidades</li>
+                    <li>Suporte prioritário</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5 parte -->
+    <div class="contato-container">
+        <h2 class="subtitulo">AINDA TEM DÚVIDAS? ESTAMOS AQUI PARA AJUDAR!</h2>
+        <h1 class="titulo">Contato</h1>
+
+        <form class="form-contato">
+            <div class="linha">
+                <div class="campo">
+                    <label>Nome</label>
+                    <input type="text">
+                </div>
+
+                <div class="campo">
+                    <label>Email</label>
+                    <input type="email">
+                </div>
+            </div>
+
+            <div class="campo mensagem">
+                <label>Mensagem</label>
+                <textarea rows="6"></textarea>
+
+                <button type="submit" class="botao">Enviar</button>
+            </div>
+        </form>
+    </div>
+
+<%- include('../partials/footer') %>
