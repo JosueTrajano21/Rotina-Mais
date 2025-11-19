@@ -1,7 +1,9 @@
 const express = require("express")
+const router = express.Router()
 
 const adminRoutes = require("./routes/psicologoGeral")
-const pacienteRoutes = require("./routes/atividades")
+const atividadesRoutes = require("./routes/atividades");
+
 
 const app = express()
 
@@ -9,11 +11,12 @@ app.set("view engine", "ejs")
 app.set("views", "./views")
 
 app.use(express.static("public"));
+app.use("/atividades", atividadesRoutes);
 
 const PORT = 3000
 
 app.get("/", (req, res) => {
-    res.render("pages/home")
+    res.render('pages/home', { titulo: 'Home', css: 'home.css' });
 })
 
 app.get('/login', (req, res) => {

@@ -1,0 +1,240 @@
+.layout {
+    display: grid;
+    grid-template-columns: 250px 1fr; 
+    height: 100vh;
+}
+
+.content {
+    padding: 0px;
+    display: grid;
+    grid-template-rows: 50px 1fr;
+}
+
+.value {
+    background-color: var(--bege-medio);
+    color: var(--marrom-escuro);
+    border: 1px solid var(--bege-escuro) ;
+    display: grid;
+    align-items: center;
+    justify-items: left;
+    padding-left: 15px;
+    font-weight: bold;
+}
+
+.tasks {
+    display: grid;
+    padding: 20px;
+    grid-template-rows: 50px 300px; 
+    gap: 20px;
+}
+
+#addTask {
+    padding-left: 10px;
+    border: 2px solid var(--bege-escuro);  
+    border-radius: 6px;
+    outline: none; /*  Tira o azul */
+    transition: border-color .2s ease;
+}
+
+#addTask:focus {
+    border-color: var(--marrom-escuro);
+}
+
+.emptyList {
+    display: grid;
+    background-color: var(--branco);
+    border: 2px solid var(--bege-escuro);
+    padding: 10px;
+    border-radius: 6px;
+    align-items: center;
+    justify-items: center;
+    text-align: center;
+    height: 100%;
+}
+
+
+.emptyList img {
+    max-width: 200px;
+    height: auto;
+    display: block;
+    object-fit: contain;
+}
+
+
+.sidebar {
+    display: grid;
+    grid-template-rows: 1fr auto;
+    height: 100vh; 
+    border: 1px solid var(--bege-escuro);
+    background-color: var(--branco);
+}
+
+.sidebar_NavContainer{
+    display: grid;
+    grid-template-rows: 50px 50px 1fr;
+}
+
+
+.userIcon{
+    background-color: var(--branco);
+    display: flex;
+    justify-content: center;
+}
+
+.userIcon img{
+    max-width: 50px;
+    height: auto;
+    display: block;
+    object-fit: contain;
+}
+
+.userIcon button {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+}
+
+.sidebar_search{
+    display: grid;
+    align-items: center;
+    justify-items: center;
+}
+
+.sidebar_search input {
+    width: 90%;
+    padding: 8px;
+    border: 2px solid var(--bege-escuro);
+    outline: none;
+    transition: border-color .2s ease;
+    border-radius: 20px;
+}
+
+.sidebar_search input:focus {
+    border-color: var(--marrom-escuro);
+}
+
+.sidebar_Calendar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px; 
+}
+
+.menu{
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 10px;
+}
+
+.menu-item {
+    padding: 10px 15px;
+    font-size: 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    color: var(--marrom-escuro);
+    transition: background-color .2s ease, color .2s ease;
+}
+
+.menu-item:hover {
+    background-color: var(--bege-claro);
+}
+
+.menu-item.active {
+    background-color: var(--bege-medio);
+    color: var(--marrom-escuro);
+    font-weight: bold;
+}
+
+
+.sidebar_Calendar .react-calendar {
+    width: 100%;
+    max-width: 230px; 
+    background: var(--branco);
+    border: none;
+    font-size: 12px;
+}
+
+.sidebar_Calendar .react-calendar__tile {
+    padding: 6px 0;
+}
+
+.taskList {
+    margin-top: 20px;
+}
+
+.taskItem {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    margin-bottom: 8px;
+    background: var(--branco);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-left: 4px solid transparent;
+}
+
+.taskItem.overdue {
+    border-left-color: #ff4444;
+    background: #fff5f5;
+}
+
+.taskItem .completed {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
+.taskItem input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.taskItem span {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.taskItem small {
+    color: #666;
+    margin-right: 10px;
+}
+
+.deleteBtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 5px;
+}
+
+.deleteBtn:hover {
+    opacity: 0.7;
+}
+
+.favoriteBtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 5px;
+}
+
+.favoriteBtn:hover {
+    transform: scale(1.2);
+    transition: transform 0.2s;
+}
+
+.deleteBtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 5px;
+}
+
+.deleteBtn:hover {
+    transform: scale(1.2);
+    transition: transform 0.2s;
+}

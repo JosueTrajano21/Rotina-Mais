@@ -1,0 +1,81 @@
+<%- include('../partials/header') %>
+<!-- ./images/meditando_yoga.pnh -->
+<div class="layout">
+
+    <div class="sidebar">
+        <div class="sidebar_NavContainer">
+            <div class="userIcon">
+                <button type="button">
+                    <img src="./images/icon_user.png" alt="User">
+                </button>
+            </div>
+
+            <div class="sidebar_search">
+                <input 
+                    type="text"
+                    placeholder="Procurar"
+                    name="procurar"
+                    id="procurar"
+                >
+            </div>
+            
+            <div class="menu">
+                <% menuItems.forEach(item => { %>
+                    <div 
+                        class="menu-item <%= selecionado === item ? 'active' : '' %>"
+                        data-item="<%= item %>"
+                    >
+                        <%= item %>
+                    </div>
+                <% }) %>
+            </div>
+
+
+            <!-- Falta o calendário -->
+        </div> 
+    </div>
+
+    <div class="content">
+       
+        <div class="value">
+            <h2>HOJE</h2>
+        </div>
+        
+        <div class="tasks">
+            <!-- Concluir função do input -->
+            <input 
+                type="text"
+                id="text"
+                placeholder="Digite uma tarefa e pressione enter"
+            >
+            
+            <!-- Criar variável tarefas -->
+            <% if (tarefasFiltradas.length === 0) {%> 
+                <div class="emptyList">
+                    <img src="/images/meditando.png" alt="Nenhuma tarefa">
+                    <div class="emptyList_message">
+                                                    <!-- Armazenar botão selecionado -->
+                        Você não possui nenhuma tarefa <% selected.toLowerCase() %>
+                    </div>
+                </div>
+            <% } else {%>
+            <div class="taskList">
+                <% tasks.forEach(task => { %>
+                    <div class="taskItem">
+                        <input type="checkbox" <%= task.completed ? "checked" : "" %> />
+                        <span><%= task.text %></span>
+                        <small><%= task.date ? task.date.toLocaleDateString() : "Sem data" %></small>
+                    </div>
+                <% }) %>
+            </div>
+            
+            <% }  %>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+<%- include('../partials/footer') %>
