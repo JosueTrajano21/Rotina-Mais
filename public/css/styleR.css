@@ -1,0 +1,196 @@
+:root {
+  /* Variáveis de cores — deixam tudo mais organizado e fácil de mudar depois */
+  --bege-primario: #F5F1E8;
+  --bege-medio: #E8E2D4;
+  --bege-escuro: #D4CCBA;
+  --marrom-suave: #8A7F6D;
+  --marrom-escuro: #5A5246;
+  --verde-suave: #A8B8A5;
+  --verde-escuro: #7A8C78;
+  --branco: #FFFFFF;
+  --cinza-claro: #F9F9F9;
+}
+
+* {
+  /* Reset básico: garante que todo elemento comece sem margem e padding,
+     e deixa o layout mais controlado */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", Arial, sans-serif;
+}
+
+body {
+  /* Cor de fundo suave + estrutura principal flexível
+     pra empurrar o footer pra baixo */
+  background-color: var(--bege-primario);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.login-container {
+  /* Centraliza todo o conteúdo de login vertical e horizontalmente */
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.login-box {
+  /* Caixa principal do formulário — limpa, minimalista e com sombra leve */
+  background: var(--branco);
+  padding: 2rem 3rem;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.05);
+  text-align: center;
+  max-width: 350px;
+  width: 100%;
+}
+
+.login-box h1 {
+  /* Título com destaque, mas mantendo a estética suave */
+  color: var(--marrom-escuro);
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+}
+
+.login-box label {
+  /* Labels alinhadas à esquerda pra leitura natural */
+  display: block;
+  text-align: left;
+  color: var(--marrom-escuro);
+  font-weight: 500;
+  margin-top: 0.5rem;
+}
+
+.login-box input[type="text"],
+.login-box input[type="email"],
+.login-box input[type="password"] {
+  /* Inputs padronizados: simples, bonitos e confortáveis de usar */
+  width: 100%;
+  padding: 0.6rem;
+  margin-top: 0.2rem;
+  margin-bottom: 0.6rem;
+  border: 1.5px solid var(--marrom-suave);
+  border-radius: 5px;
+  font-size: 0.95rem;
+}
+
+.tipo-usuario {
+  /* Espaço dos radio buttons — explicando o papel do usuário */
+  text-align: left;
+  color: var(--marrom-escuro);
+  font-size: 0.9rem;
+  margin-top: 0.8rem;
+  margin-bottom: 1.2rem;
+}
+
+.tipo-usuario span {
+  /* Título da seção dos radios */
+  display: block;
+  margin-bottom: 0.4rem;
+  font-weight: 500;
+}
+
+.tipo-usuario label {
+  /* Deixa os radio buttons lado a lado com o texto */
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 400;
+  color: var(--marrom-suave);
+  margin-bottom: 0.3rem;
+}
+
+.tipo-usuario input[type="radio"] {
+  /* Cor personalizada pra combinar com a identidade visual */
+  accent-color: var(--verde-escuro);
+}
+
+.botoes {
+  /* Organização dos botões lado a lado */
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.btn {
+  /* Estilo padrão de todos os botões: simples, moderno e responsivo */
+  flex: 1;
+  border: none;
+  border-radius: 6px;
+  padding: 0.6rem 0;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  color: var(--branco);
+  background-color: var(--verde-suave);
+}
+
+.btn:hover {
+  /* Hover com escurecimento leve pra dar feedback visual */
+  background-color: var(--verde-escuro);
+}
+
+footer {
+  /* Rodapé com cor suave e boa legibilidade */
+  background-color: var(--bege-medio);
+  color: var(--marrom-escuro);
+  font-size: 0.85rem;
+  padding: 1rem 2rem 0.5rem;
+}
+
+.footer-container {
+  /* Divide o rodapé em colunas e deixa tudo organizado */
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  border-bottom: 1px solid var(--bege-escuro);
+  padding-bottom: 0.6rem;
+}
+
+.footer-col {
+  /* Cada coluna se adapta ao espaço sem quebrar o layout */
+  flex: 1;
+  min-width: 200px;
+}
+
+.footer-col h3 {
+  /* Títulos das colunas do rodapé */
+  margin-bottom: 0.4rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.footer-col ul {
+  /* tira as bolinhas padrão das listas */
+  list-style: none;
+}
+
+.footer-col ul li {
+  margin-bottom: 0.25rem;
+}
+
+.footer-col a {
+  /* Links discretos, seguindo a paleta */
+  text-decoration: none;
+  color: var(--marrom-suave);
+}
+
+.footer-col a:hover {
+  /* Pequeno destaque quando passa o mouse */
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  /* Assinatura final do site — bem centralizada */
+  text-align: center;
+  margin-top: 0.5rem;
+  color: var(--marrom-suave);
+  font-size: 0.8rem;
+}
