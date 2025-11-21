@@ -33,6 +33,8 @@
     border: 2px solid var(--bege-escuro);  
     border-radius: 6px;
     outline: none; /*  Tira o azul */
+    width: 100%;
+    height: 40px;
     transition: border-color .2s ease;
 }
 
@@ -128,6 +130,7 @@
     flex-direction: column;
     gap: 6px;
     padding: 10px;
+    width: auto;
 }
 
 .menu-item {

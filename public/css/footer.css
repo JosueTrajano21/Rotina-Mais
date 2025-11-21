@@ -1,34 +1,3 @@
-:root {
-  /* Variáveis de cores — deixam tudo mais organizado e fácil de mudar depois */
-  --bege-primario: #F5F1E8;
-  --bege-medio: #E8E2D4;
-  --bege-escuro: #D4CCBA;
-  --marrom-suave: #8A7F6D;
-  --marrom-escuro: #5A5246;
-  --verde-suave: #A8B8A5;
-  --verde-escuro: #7A8C78;
-  --branco: #FFFFFF;
-  --cinza-claro: #F9F9F9;
-}
-
-* {
-  /* Reset básico: garante que todo elemento comece sem margem e padding,
-     e deixa o layout mais controlado */
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", Arial, sans-serif;
-}
-
-body {
-  /* Cor de fundo suave + estrutura principal flexível
-     pra empurrar o footer pra baixo */
-  background-color: var(--bege-primario);
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
 footer {
   /* Rodapé com cor suave e boa legibilidade */
   background-color: var(--bege-medio);

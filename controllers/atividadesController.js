@@ -1,17 +1,15 @@
+const Atividade = require('../models/atividadeModel')
+
 module.exports = {
     index: (req, res) => {
-        const tasks = [
-            { id: 1, text: "Estudar React", completed: false },
-            { id: 2, text: "Academia", completed: true },
-            { id: 3, text: "Fazer atividade", completed: false }
-        ];
+        const tasks = Atividade.getAll();
 
         const menuItems = [
             "Sem data", "Hoje", "Semana", "Mês",
             "Importantes", "Recorrentes", "Vencidas", "Todas"
         ];
-
-        const selecionado = "Todas";  
+        
+        const selecionado = req.query.filter || 'Hoje';
 
         // Simplesmente filtrando tudo no começo
         const tarefasFiltradas = tasks; 
@@ -22,7 +20,37 @@ module.exports = {
             tasks,
             menuItems,
             selecionado,
-            tarefasFiltradas
+            tarefasFiltradas,
+            
         });
+    },
+
+    create: (req, res) =>{
+
+        const { titulo } = req.body;
+    
+    if (!titulo || titulo.trim() === '') {
+        const tasks = Atividade.getAll();
+        const menuItems = [
+            "Sem data", "Hoje", "Semana", "Mês",
+            "Importantes", "Recorrentes", "Vencidas", "Todas"
+        ];
+        const selecionado = 'Hoje';
+        const tarefasFiltradas = tasks;
+
+        return res.render('pages/atividades', {
+            titulo: "Atividades",
+            css: "atividades.css",
+            tasks: tasks,
+            menuItems: menuItems,
+            selecionado: selecionado,
+            tarefasFiltradas: tarefasFiltradas,
+            error: 'Título é obrigatório!'
+        });
+    }
+
+    Atividade.create(titulo);
+    res.redirect('/atividades');  // ← Corrigir o redirect também!
+
     }
 };

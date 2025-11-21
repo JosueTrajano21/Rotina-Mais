@@ -1,16 +1,16 @@
 const express = require("express")
 const router = express.Router()
+const app = express()
 
 const adminRoutes = require("./routes/psicologoGeral")
 const atividadesRoutes = require("./routes/atividades");
 
 
-const app = express()
-
 app.set("view engine", "ejs")
 app.set("views", "./views")
-
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
+
 app.use("/atividades", atividadesRoutes);
 
 const PORT = 3000
