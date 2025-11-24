@@ -1,1 +1,0 @@
-// aqui fica login, registro, logout.

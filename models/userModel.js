@@ -1,1 +1,0 @@
-// buscas de usuário, criação, validação.

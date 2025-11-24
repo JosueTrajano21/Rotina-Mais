@@ -1,4 +1,4 @@
-const Atividade = require('../models/atividadeModel')
+const Atividade = require('../models/atividadesModel')
 
 module.exports = {
     index: (req, res) => {
