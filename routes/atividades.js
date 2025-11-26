@@ -1,9 +1,10 @@
-const express = require("express");
-const router = express.Router();
-const atividadesController = require("../controllers/atividadesController");
-
-router.get("/", atividadesController.index);
-router.post('/', atividadesController.create);
+const express = require("express")
+const router = express.Router()
+const atividadesController = require("../controllers/atividadesController")
+const auth = require("../middleware/requireLogin")
 
 
-module.exports = router;
+router.get("/", auth, atividadesController.index)
+router.post('/', auth, atividadesController.criar)
+
+module.exports = router

@@ -1,28 +1,36 @@
 // criação/listagem de atividades.
+const db = require('../database/db')
 
 class Atividade {
-    constructor() {
-        this.atividades = [];
-        this.nextId = 1;
+    
+    static async listarPorPaciente(id_paciente){
+        const [rows] = await db.query(
+            "SELECT * FROM atividade WHERE id_paciente = ?",
+            [id_paciente]
+        )
+        return rows
     }
 
-    // Buscar todas as atividades
-    getAll() {
-        return this.atividades;
+    static async criar({id_paciente, titulo, data = null}){
+        console.log("VALOR RECEBIDO EM criar():", { id_paciente, titulo, data })
+        const [resultado] = await db.query(
+            "INSERT INTO atividade (id_paciente, titulo, data) VALUES (?, ?, ?)",
+            [id_paciente, titulo, data]
+        )
+        return resultado.insertId
     }
 
-    // Criar nova atividade
-    create(titulo) {
-        const novaAtividade = {
-            id: this.nextId++,
-            titulo,
-            criadoEm: new Date().toLocaleString('pt-BR')
-        };
-        
-        this.atividades.push(novaAtividade);
-        return novaAtividade;
+
+    static formatarDataParaMySQL(data) {
+        const d = new Date(data)
+
+        const ano = d.getFullYear()
+        const mes = String(d.getMonth() + 1).padStart(2, '0')
+        const dia = String(d.getDate()).padStart(2, '0')
+
+        return `${ano}-${mes}-${dia}`
     }
+
 }
 
-// Exportar uma instância única (Singleton)
-module.exports = new Atividade();
+module.exports = Atividade;

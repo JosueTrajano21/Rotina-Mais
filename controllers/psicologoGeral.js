@@ -1,1 +1,0 @@
-// carrega dados gerais de todos os usuários

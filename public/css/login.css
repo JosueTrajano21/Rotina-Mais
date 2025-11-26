@@ -105,3 +105,13 @@
   /* Hover com escurecimento leve pra dar feedback visual */
   background-color: var(--verde-escuro);
 }
+
+.erro {
+    background: #ffdddd;
+    border: 1px solid #ff5c5c;
+    padding: 10px;
+    color: #a10000;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    font-size: 14px;
+}

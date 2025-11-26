@@ -11,10 +11,10 @@ class Psicologo {
     }
 
     static async listar() {
-        const [rows] = await db.query(
+        const [resultado] = await db.query(
             "SELECT id_psicologo, name, email FROM psicologo"
         );
-        return rows.map(dados => new Psicologo(dados));
+        return resultado.map(dados => new Psicologo(dados));
     }
 
     async salvar() {
@@ -30,13 +30,13 @@ class Psicologo {
     }
 
     static async buscarPorEmail(email) {
-        const [rows] = await db.query(
+        const [resultado] = await db.query(
             "SELECT * FROM psicologo WHERE email = ?",
             [email]
-        );
+           );
 
-        if (rows.length > 0) {
-            return new Psicologo(rows[0]);
+        if (resultado.length > 0) {
+            return new Psicologo(resultado[0]);
         }
 
         return null;

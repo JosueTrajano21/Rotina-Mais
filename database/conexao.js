@@ -1,6 +1,6 @@
 const mysql = require('mysql2/promise')
 
-// Ponte entre node.js e mysql
+// Criação do banco de dados
 
 
 async function conectar() {

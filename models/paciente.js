@@ -12,10 +12,10 @@ class Paciente {
     }
 
     static async listar() {
-        const [rows] = await db.query(
+        const [resultado] = await db.query(
             "SELECT id_paciente, name, email FROM paciente"
         );
-        return rows.map(dados => new Paciente(dados));
+        return resultado.map(dados => new Paciente(dados));
     }
 
     async salvar() {
@@ -31,13 +31,13 @@ class Paciente {
     }
 
     static async buscarPorEmail(email) {
-        const [rows] = await db.query(
+        const [resultado] = await db.query(
             "SELECT * FROM paciente WHERE email = ?",
             [email]
         );
 
-        if (rows.length > 0) {
-            return new Paciente(rows[0]);
+        if (resultado.length > 0) {
+            return new Paciente(resultado[0]);
         }
 
         return null;

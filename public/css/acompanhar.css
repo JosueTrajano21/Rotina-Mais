@@ -1,0 +1,105 @@
+.topbar {
+  background: var(--bege-medio);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(90, 82, 70, 0.1);
+  border-bottom: 1px solid var(--bege-escuro);
+}
+
+.brand {
+  font-weight: 700;
+  letter-spacing: 4px;
+  color: var(--marrom-escuro);
+  font-size: 1.25rem;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.btn-link {
+  background: none;
+  border: none;
+  font-size: 0.9rem;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  color: var(--marrom-escuro);
+  font-weight: 500;
+  transition: color 0.3s ease;
+  padding: 0.5rem 0;
+}
+
+.btn-link:hover {
+  color: var(--verde-escuro);
+}
+
+.profile img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid var(--bege-escuro);
+}
+
+main {  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    justify-content: center;
+    border-radius: 15px;
+    padding: 40px;
+    width: 100%;
+}
+
+.card-centralizado {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    width: 100%;
+    max-width: 900px;
+}
+
+.header-paciente {
+    text-align: center;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 20px;
+}
+
+.header-paciente h1 {
+    font-size: 2rem;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.header-paciente .email {
+    font-size: 1.1rem;
+}
+
+.grid-metricas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 25px;
+}
+
+.card-metrica {
+  background: linear-gradient(135deg, var(--cinza-claro) 0%, var(--bege-medio) 100%);
+  border-radius: 15px;
+  padding: 25px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(90, 82, 70, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid var(--bege-escuro);
+  position: relative;
+  overflow: hidden;
+}

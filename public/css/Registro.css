@@ -122,7 +122,8 @@ body {
   flex: 1;
   border: none;
   border-radius: 6px;
-  padding: 0.6rem 0;
+  max-height: 40px;
+  padding: 0.6rem 12px;
   font-weight: 600;
   cursor: pointer;
   transition: background 0.3s ease;
@@ -193,4 +194,14 @@ footer {
   margin-top: 0.5rem;
   color: var(--marrom-suave);
   font-size: 0.8rem;
+}
+
+.erro {
+    background: #ffdddd;
+    border: 1px solid #ff5c5c;
+    padding: 10px;
+    color: #a10000;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    font-size: 14px;
 }

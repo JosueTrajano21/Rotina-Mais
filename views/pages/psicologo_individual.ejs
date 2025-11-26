@@ -1,0 +1,57 @@
+<%- include('../partials/header', { titulo: `Acompanhar ${paciente.name}` , css: 'acompanhar.css' }) %>
+
+<header class="topbar">
+  <div class="brand">ROTINA+</div>
+
+  <div class="topbar-right">
+    <a href="/psicologo_geral"><button class="btn-link">VOLTAR</button></a>
+    
+
+    <div class="profile">
+      <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="perfil">
+    </div>
+
+    <form action="/logout" method="POST">
+        <button type="submit" class="btn-link">
+          SAIR
+        </button>
+    </form>
+
+  </div>
+</header>
+
+<main>
+    <div class="container">
+        <div class="card-centralizado">
+            <!-- Header com informações do paciente -->
+            <div class="header-paciente">
+                <h1><%= paciente.name %> - <%= paciente.id_paciente %></h1>
+                <p class="email">Email: <%= paciente.email %></p>
+            </div>
+
+            <!-- Grid de métricas -->
+            <div class="grid-metricas">
+                <div class="card-metrica">
+                    <h3>Tarefas Concluídas</h3>
+                    <div class="valor"> <%= paciente.metricas.tarefasConcluidas %> </div>
+                </div>
+                
+                <div class="card-metrica">
+                    <h3>Tarefas Atrasadas</h3>
+                    <div class="valor"> <%= paciente.metricas.tarefasAtrasadas %> </div>
+                </div>
+                
+                <div class="card-metrica">
+                    <h3>Tarefas Pendentes</h3>
+                    <div class="valor"> <%= paciente.metricas.tarefasPendentes %> </div>
+                </div>
+                
+                <div class="card-metrica">
+                    <h3>Dias Ativos</h3>
+                    <div class="valor"> Sem dados </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<%- include('../partials/footer') %>

@@ -1,56 +1,69 @@
 const Atividade = require('../models/atividadesModel')
+    
 
 module.exports = {
-    index: (req, res) => {
-        const tasks = Atividade.getAll();
+    index: async (req, res) => {
+        const id_paciente = req.session.user.id
+        const filtro = req.query.filter || "Hoje"
+        
+        // Busca as atividades do paciente
+        const tasks = await Atividade.listarPorPaciente(id_paciente)
+
+        // Filtrar tarefas
+        const tarefasFiltradas = 'Hoje'
 
         const menuItems = [
             "Sem data", "Hoje", "Semana", "Mês",
             "Importantes", "Recorrentes", "Vencidas", "Todas"
-        ];
-        
-        const selecionado = req.query.filter || 'Hoje';
-
-        // Simplesmente filtrando tudo no começo
-        const tarefasFiltradas = tasks; 
+        ]
 
         res.render("pages/atividades", {
             titulo: "Atividades",
             css: "atividades.css",
             tasks,
             menuItems,
-            selecionado,
+            filtro,
             tarefasFiltradas,
-            
-        });
+            selecionado: filtro,
+        })
     },
 
-    create: (req, res) =>{
+    criar: async (req, res) =>{
 
-        const { titulo } = req.body;
-    
-    if (!titulo || titulo.trim() === '') {
-        const tasks = Atividade.getAll();
-        const menuItems = [
-            "Sem data", "Hoje", "Semana", "Mês",
-            "Importantes", "Recorrentes", "Vencidas", "Todas"
-        ];
-        const selecionado = 'Hoje';
-        const tarefasFiltradas = tasks;
+        const { titulo } = req.body
+        const id_paciente = req.session.user.id // id do paciente
+        console.log(id_paciente)
+        const data = Atividade.formatarDataParaMySQL(new Date()) // teste
+        console.log(data)
 
-        return res.render('pages/atividades', {
-            titulo: "Atividades",
-            css: "atividades.css",
-            tasks: tasks,
-            menuItems: menuItems,
-            selecionado: selecionado,
-            tarefasFiltradas: tarefasFiltradas,
-            error: 'Título é obrigatório!'
-        });
+        
+
+        if (!titulo || titulo.trim() === '') {
+            const tasks = await Atividade.listarPorPaciente(id_paciente)
+            const menuItems = [
+                "Sem data", "Hoje", "Semana", "Mês",
+                "Importantes", "Recorrentes", "Vencidas", "Todas"
+            ]
+            const selecionado = 'Hoje'
+            const tarefasFiltradas = tasks
+
+            return res.render('pages/atividades', {
+                titulo: "Atividades",
+                css: "atividades.css",
+                tasks: tasks,
+                menuItems: menuItems,
+                selecionado: selecionado,
+                tarefasFiltradas: tarefasFiltradas,
+                error: 'Título é obrigatório!'
+            })
+        }
+
+        await Atividade.criar({
+            id_paciente,
+            titulo,
+            data
+        })
+
+        res.redirect('/atividades')
     }
-
-    Atividade.create(titulo);
-    res.redirect('/atividades');  // ← Corrigir o redirect também!
-
-    }
-};
+}

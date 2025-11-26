@@ -1,5 +1,5 @@
 
-<%- include('../partials/header', { titulo: 'Login' }) %>
+<%- include('../partials/header') %>
 
     <main class="login-container">
         <form class="login-box" method="POST" action="/login">
@@ -23,6 +23,11 @@
                 <label><input type="radio" name="tipo" value="psicologo"> Psicólogo</label>
                 <!-- Essa escolha ajuda a direcionar o usuário pro fluxo correto do sistema -->
             </div>
+
+            <!-- Caso de login ou senha sejam incorretos -->
+            <% if (erro) { %>
+                <div class="erro"><%= erro %></div>
+            <% } %>
 
             <!-- Botões principais para enviar ou ir para cadastro -->
             <div class="botoes">
