@@ -31,7 +31,7 @@ class Atividade {
         return `${ano}-${mes}-${dia}`
     }
 
-    // CRIAR FUNÇÃO PARA CHECAR A DATA PARA O FILTRO
+    // CRIAR FUNÇÃO PARA CHECAR A DATA NO BANCO PARA O FILTRO 
 
 }
 
