@@ -296,8 +296,73 @@
 }
 
 /* Melhor responsividade */
+@media (max-width: 768px) {
+  .main-header {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+    gap: 15px;
+  }
+
+  .main-nav ul {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    padding: 10px 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+    padding: 0 10px;
+  }
+
+  .cta {
+    padding: 12px 35px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 900px) {
+  .feature-item,
+  .secondary-item {
+    flex-basis: 100%;
+    max-width: 100%;
+  }
+
+  .features-row {
+    gap: 30px;
+  }
+}
+
 @media (max-width: 500px) {
   .botao {
     width: 100%;
   }
 }
+
+@media (max-width: 480px) {
+  .plan-card {
+    width: 90%;
+  }
+
+  .plan-price .value {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 600px) {
+  .linha {
+    flex-direction: column;
+  }
+
+  .campo {
+    min-width: 100%;
+  }
+}
+
