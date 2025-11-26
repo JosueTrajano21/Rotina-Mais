@@ -1,0 +1,54 @@
+<%- include('../partials/header') %>
+<%- include('../partials/sidebar') %>
+
+<!-- ./images/meditando_yoga.pnh -->
+<div class="layout">
+
+    <div class="content">
+       
+        <div class="value">
+            <h2><%= selecionado %></h2>
+        </div>
+        
+        <div class="tasks">
+            <!-- Concluir função do input -->
+            <form action="/atividades" method="post">
+               <input 
+                    type="text"
+                    name="titulo"         
+                    id="addTask"
+                    placeholder="Digite uma tarefa e pressione enter"
+                    required
+                >
+            </form>
+            
+            <!-- Criar variável tarefas -->
+            <% if (tarefasFiltradas.length === 0) {%> 
+                <div class="emptyList">
+                    <img src="/images/meditando.png" alt="Nenhuma tarefa">
+                    <div class="emptyList_message">
+                                                    <!-- Armazenar botão selecionado -->
+                        Você não possui nenhuma tarefa <% selecionado.toLowerCase() %>
+                    </div>
+                </div>
+            <% } else {%>
+            <div class="taskList"><!-- chamaria a chegagem de data nessa div -->
+                <% tasks.forEach(task => { %>
+                    <div class="taskItem">
+                        <input type="checkbox" />
+                        <span><%= task.titulo %></span>  <!-- ✅ Mude para "titulo" -->
+                        <small><%= task.criadoEm %></small>  <!-- ✅ Use "criadoEm" -->
+                    </div>
+                <% }) %>
+            </div>
+            
+            <% }  %>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+<%- include('../partials/footer') %>
