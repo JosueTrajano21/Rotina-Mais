@@ -79,4 +79,15 @@ async function criarTabelas(conexao) {
 
 }
 
+conectar()
+  .then(() => {
+    console.log("Banco e tabelas criados com sucesso!");
+    process.exit();
+  })
+  .catch((err) => {
+    console.log("Erro: ", err);
+    process.exit(1);
+  });
+
+
 module.exports = conectar
