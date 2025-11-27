@@ -14,10 +14,10 @@
     background-color: var(--bege-medio);
     color: var(--marrom-escuro);
     border: 1px solid var(--bege-escuro) ;
-    display: grid;
+    display: flex;
     align-items: center;
-    justify-items: left;
-    padding-left: 15px;
+    justify-content: space-between;
+    padding: 0px 15px;
     font-weight: bold;
 }
 
@@ -244,4 +244,20 @@
 .deleteBtn:hover {
     transform: scale(1.2);
     transition: transform 0.2s;
+}
+
+.btn-link {
+  background: none;
+  border: none;
+  font-size: 0.9rem;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  color: var(--marrom-escuro);
+  font-weight: 500;
+  transition: color 0.3s ease;
+  padding: 0.5rem 0;
+}
+
+.btn-link:hover {
+  color: var(--verde-escuro);
 }
