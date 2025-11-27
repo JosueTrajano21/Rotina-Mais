@@ -71,6 +71,10 @@
     background-color: var(--branco);
 }
 
+.sidebar a {
+    text-decoration: none;
+}
+
 .sidebar_NavContainer{
     display: grid;
     grid-template-rows: 50px 50px 1fr;
@@ -185,7 +189,7 @@
     background: #fff5f5;
 }
 
-.taskItem .completed {
+.taskItem.completed {
     text-decoration: line-through;
     opacity: 0.6;
 }
@@ -241,3 +245,4 @@
     transform: scale(1.2);
     transition: transform 0.2s;
 }
+

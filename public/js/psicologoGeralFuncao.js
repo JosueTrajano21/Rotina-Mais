@@ -28,16 +28,14 @@ searchInput.addEventListener("input", () => {
     const email = card.querySelector(".patient-email").textContent.toLowerCase();
 
     if(nome.includes(termo) || email.includes(termo)) {
-      card.style.display = "flex"; // ou block dependendo do seu CSS
+      card.style.display = "flex"; 
     } else {
       card.style.display = "none";
     }
   });
 });
 
-
 // Função que redireciona a rota para mostra os dados somente do paciente
-
 function acompanhar(idPaciente) {
     const id = Number(idPaciente);
     console.log(id);

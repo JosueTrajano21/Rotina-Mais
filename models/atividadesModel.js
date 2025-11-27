@@ -10,8 +10,8 @@ class Atividade {
         )
         return rows
     }
-
-    static async criar({id_paciente, titulo, data = null}){
+    
+    static async criarAtivadade({id_paciente, titulo, data = null}){
         console.log("VALOR RECEBIDO EM criar():", { id_paciente, titulo, data })
         const [resultado] = await db.query(
             "INSERT INTO atividade (id_paciente, titulo, data) VALUES (?, ?, ?)",
@@ -20,8 +20,7 @@ class Atividade {
         return resultado.insertId
     }
 
-
-    static formatarDataParaMySQL(data) {
+    static formatarDataParaMySQL(data){
         const d = new Date(data)
 
         const ano = d.getFullYear()
@@ -31,6 +30,30 @@ class Atividade {
         return `${ano}-${mes}-${dia}`
     }
 
+    static async marcarComoCompletada(id, completada){
+        const [resultado] = await db.query(
+            "UPDATE atividade SET completada = ? WHERE id_atividade = ?",
+            [completada, id]
+        )
+    }
+
+    static async excluirTarefa(id_atividade, id_paciente){
+        const [resultado] = await db.query(
+            "DELETE FROM atividade WHERE id_atividade = ? AND id_paciente = ?",
+            [id_atividade, id_paciente]
+        )
+        return resultado.affectedRows > 0
+    }
+
+    static async marcarComoFavorita(id, favorito){
+        const [resultado] = await db.query(
+            "UPDATE atividade SET favorito = ? WHERE id_atividade = ?",
+            [favorito, id]
+        )
+        return resultado.affectedRows > 0
+    }
+
+    
 }
 
 module.exports = Atividade;

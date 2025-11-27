@@ -22,18 +22,15 @@
 
             <div class="menu">
                 <% menuItems.forEach(item => { %>
-                    <div 
-                        class="menu-item <%= selecionado === item ? 'active' : '' %>"
-                        data-item="item"
-                        onclick=""
+                    <a 
+                    class="menu-item <%= selecionado === item ? 'active' : '' %>"
+                    href="/atividades?filter=<%= item %>"
                     >
                         <%= item %>
-                    </div>
+                    </a>
                 <% }) %>
             </div>
 
-
-            <!-- Falta o calendário -->
         </div> 
     </div>
 
@@ -44,7 +41,7 @@
         </div>
         
         <div class="tasks">
-            <!-- Concluir função do input -->
+            
             <form action="/atividades" method="post">
                <input 
                     type="text"
@@ -55,26 +52,52 @@
                 >
             </form>
             
-            <!-- Criar variável tarefas -->
+            
             <% if (tarefasFiltradas.length === 0) {%> 
                 <div class="emptyList">
                     <img src="/images/meditando.png" alt="Nenhuma tarefa">
-                    <div class="emptyList_message">
-                                                    <!-- Armazenar botão selecionado -->
+                    <div class="emptyList_message">                     
                         Você não possui nenhuma tarefa <% selecionado.toLowerCase() %>
                     </div>
                 </div>
             <% } else {%>
-            <div class="taskList">
-                <% tasks.forEach(task => { %>
-                    <div class="taskItem">
-                        <input type="checkbox" />
-                        <span><%= task.titulo %></span>  <!-- ✅ Mude para "titulo" -->
-                        <small><%= task.criadoEm %></small>  <!-- ✅ Use "criadoEm" -->
-                    </div>
-                <% }) %>
-            </div>
-            
+                <div class="taskList">
+                    <% tarefasFiltradas.forEach(tarefa => { %>
+                        <div class="taskItem <%= tarefa.completada ? 'completed' : '' %>">
+                            
+                            <input 
+                                type="checkbox"
+                                class="checkbox-tarefa"
+                                data-id="<%= tarefa.id_atividade %>"
+                                <%= tarefa.completada ? 'checked' : '' %>
+                            />
+
+                            <span><%= tarefa.titulo %></span>
+
+                            <small><% if (tarefa.dataFormatada) { %>
+                                <%= tarefa.dataFormatada %>
+                            <% } else {%>
+                                Sem data
+                            <% } %>
+                            </small>  
+
+                            <button 
+                                class="favoriteBtn" 
+                                data-id="<%= tarefa.id_atividade %>" 
+                                data-fav="<%= tarefa.favorito %>"
+                                title="Favoritar"
+                            >
+                                <%= tarefa.favorito ? "★" : "☆" %>
+                            </button>
+
+                            <form action="/atividades/excluir" method="post">
+                                <input type="hidden" name="id_tarefa" value="<%= tarefa.id_atividade %>">
+                                <button type="submit" class="deleteBtn" title="Excluir tarefa">🗑️</button>
+                            </form>
+
+                        </div>
+                    <% }) %>
+                </div>
             <% }  %>
 
         </div>
@@ -84,4 +107,5 @@
 
 </div>
 
+<script src="/js/atividade.js"></script>
 <%- include('../partials/footer') %>
