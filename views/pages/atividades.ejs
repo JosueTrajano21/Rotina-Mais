@@ -22,13 +22,12 @@
 
             <div class="menu">
                 <% menuItems.forEach(item => { %>
-                    <div 
-                        class="menu-item <%= selecionado === item ? 'active' : '' %>"
-                        data-item="item"
-                        onclick=""
+                    <a 
+                    class="menu-item <%= selecionado === item ? 'active' : '' %>"
+                    href="/atividades?filter=<%= item %>"
                     >
                         <%= item %>
-                    </div>
+                    </a>
                 <% }) %>
             </div>
 
