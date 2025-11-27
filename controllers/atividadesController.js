@@ -36,6 +36,7 @@ module.exports = {
     index: async (req, res) => {
         const id_paciente = req.session.user.id
         const filtro = req.query.filter || "Hoje"
+        console.log(req.query.filter)
         
         // Busca as atividades do paciente
         const tarefas = await Atividade.listarPorPaciente(id_paciente)
@@ -48,6 +49,34 @@ module.exports = {
             }
         })
 
+        // Filtrar tarefas
+        const tarefasFiltradas =  tarefas.filter(tarefa =>{
+            // Filter pq vai retornar os elementos correspondentes a condição
+            const hoje = Atividade.formatarDataParaMySQL(new Date())
+
+            if (filtro === "Sem data"){
+                return !(tarefa.data)
+            }
+            if (filtro === "Hoje"){
+                return Atividade.formatarDataParaMySQL(tarefa.data) === hoje
+            } 
+            if (filtro === "Semana"){
+                return  estaNaSemana(tarefa.data)
+            }
+            if (filtro === "Mês"){
+                return  estaNoMes(tarefa.data)
+            }
+            if (filtro === "Importantes"){
+                return tarefa.favorito === 1
+            }
+            if (filtro === "Vencidas"){
+                return Atividade.formatarDataParaMySQL(tarefa.data) < hoje && tarefa.completada === 0;
+            }
+            if (filtro === "Pendentes"){
+                return tarefa.completada === 0;
+            }
+            return true
+        })
 
         const menuItems = [
             "Sem data", "Hoje", "Semana", "Mês",
