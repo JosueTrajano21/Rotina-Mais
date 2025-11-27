@@ -71,6 +71,10 @@
     background-color: var(--branco);
 }
 
+.sidebar a {
+    text-decoration: none;
+}
+
 .sidebar_NavContainer{
     display: grid;
     grid-template-rows: 50px 50px 1fr;
