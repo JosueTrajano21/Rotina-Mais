@@ -28,7 +28,7 @@ module.exports = {
         const filtro = req.query.filter || "Hoje"
         
         // Busca as atividades do paciente
-        const tasks = await Atividade.listarPorPaciente(id_paciente)
+        const tarefas = await Atividade.listarPorPaciente(id_paciente)
 
         // Filtrar tarefas
         const tarefasFiltradas =  tarefas.filter(tarefa =>{
@@ -68,7 +68,7 @@ module.exports = {
         res.render("pages/atividades", {
             titulo: "Atividades",
             css: "atividades.css",
-            tasks,
+            tarefas,
             menuItems,
             filtro,
             tarefasFiltradas,
@@ -87,18 +87,18 @@ module.exports = {
         
 
         if (!titulo || titulo.trim() === '') {
-            const tasks = await Atividade.listarPorPaciente(id_paciente)
+            const tarefas = await Atividade.listarPorPaciente(id_paciente)
             const menuItems = [
                 "Sem data", "Hoje", "Semana", "Mês",
                 "Importantes", "Recorrentes", "Vencidas", "Todas"
             ]
             const selecionado = 'Hoje'
-            const tarefasFiltradas = tasks
+            const tarefasFiltradas = tarefas
 
             return res.render('pages/atividades', {
                 titulo: "Atividades",
                 css: "atividades.css",
-                tasks: tasks,
+                tarefas: tarefas,
                 menuItems: menuItems,
                 selecionado: selecionado,
                 tarefasFiltradas: tarefasFiltradas,
