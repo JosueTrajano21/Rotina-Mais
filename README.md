@@ -1,6 +1,6 @@
 # RotinaMais
 
-# Portal de Notícias - Node.js + Express
+# RotinaMais - Node.js + Express
 
 ![Node](https://img.shields.io/badge/Node-18%2B-brightgreen?style=flat&logo=node.js)
 ![License](https://img.shields.io/badge/License-MIT-blue?style=flat)
