@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt");
 
 class Psicologo {
 
+    // Inicializa o objeto Psicologo
     constructor(dados = {}) {
         this.id = dados.id_psicologo || null;
         this.name = dados.name || "";
@@ -10,25 +11,29 @@ class Psicologo {
         this.senha = dados.senha || "";
     }
 
+    // Busca todos os psicólogos
     static async listar() {
         const [resultado] = await db.query(
             "SELECT id_psicologo, name, email FROM psicologo"
         );
+        // Converte cada linha em um objeto Psicologo
         return resultado.map(dados => new Psicologo(dados));
     }
 
+    // Salva novo paciente no banco com senha criptografada
     async salvar() {
         const hash = await bcrypt.hash(this.senha, 10);
-
+        
         const [resultado] = await db.query(
             "INSERT INTO psicologo (name, email, senha) VALUES (?, ?, ?)",
             [this.name, this.email, hash]
         );
-
+        // Salva o ID gerado e retorna
         this.id = resultado.insertId;
         return this.id;
     }
 
+    // Busca um psicologo pelo email
     static async buscarPorEmail(email) {
         const [resultado] = await db.query(
             "SELECT * FROM psicologo WHERE email = ?",
@@ -41,7 +46,8 @@ class Psicologo {
 
         return null;
     }
-
+    
+    // Compara senha digitada com o hash salvo no banco
     async verificarSenha(senhaDigitada) {
         return bcrypt.compare(senhaDigitada, this.senha);
     }

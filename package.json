@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js",
+    "setup-db": "node conexao.js"
   },
   "dependencies": {
     "bcrypt": "^6.0.0",

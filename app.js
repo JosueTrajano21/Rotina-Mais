@@ -5,8 +5,8 @@ const session = require("express-session")
 
 // Sessão
 app.use(session({
-    secret: "segredo-super-seguro",
-    resave: false,
+    secret: process.env.SESSION_SECRET || "segredo",
+    resave: false, 
     saveUninitialized: false,
     cookie: { maxAge: 1000 * 60 * 60 }
 }))
@@ -18,11 +18,11 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.static("public"))
 app.use(express.json());
 
-// Rotas
-const atividadesRoutes = require("./routes/atividades")
-const authRoutes = require("./routes/auth")
-const registrarRoutes = require("./routes/registrar")
-const psicologoGeralRoutes = require("./routes/psicologoGeralRoutes")
+// Importação de rotas
+const pacienteRoutes = require("./routes/pacienteRoutes")
+const loginRoutes = require("./routes/loginRoutes")
+const registrarRoutes = require("./routes/registrarRoutes")
+const psicologoRoutes = require("./routes/psicologoRoutes")
 
 // Rota principal
 app.get("/", (req, res) => {
@@ -32,12 +32,12 @@ app.get("/", (req, res) => {
     })
 })
 
-// controllers
-app.use("/atividades", atividadesRoutes)
-app.use("/", authRoutes)
+//  Rotas principais
+app.use("/", pacienteRoutes)
+app.use("/", loginRoutes)
 app.use("/", registrarRoutes)
-app.use("/psicologo_geral", psicologoGeralRoutes)
+app.use("/", psicologoRoutes)
 
-
+// Inicialização do servidor
 const PORT = process.env.PORT || 3000
 app.listen(PORT, () => console.log(`Servidor rodando em http://localhost:${PORT}`))

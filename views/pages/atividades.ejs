@@ -39,14 +39,11 @@
        
         <div class="value">
             <h2><%= selecionado %></h2>
-            <form action="/logout" method="POST">
-                <button type="submit" class="btn-link">
-                SAIR
-                </button>
-            </form>
+            <a href="/logout" class="btn-link">SAIR</a>
         </div>
         
         <div class="tasks">
+            
             
             <form action="/atividades" method="post">
                <input 
@@ -69,7 +66,9 @@
             <% } else {%>
                 <div class="taskList">
                     <% tarefasFiltradas.forEach(tarefa => { %>
-                        <div class="taskItem <%= tarefa.completada ? 'completed' : '' %>">
+                        <div class="taskItem <%= tarefa.completada ? 'completed' : '' %>"
+                            onclick="abrirModal('<%= tarefa.id_atividade %>', '<%= tarefa.titulo %>', '<%= tarefa.dataFormatada%>', `<%= tarefa.descricao || '' %>`)">
+
                             
                             <input 
                                 type="checkbox"
@@ -92,13 +91,21 @@
                                 data-id="<%= tarefa.id_atividade %>" 
                                 data-fav="<%= tarefa.favorito %>"
                                 title="Favoritar"
+                                onclick="event.stopPropagation()"
                             >
-                                <%= tarefa.favorito ? "★" : "☆" %>
+                                <%= tarefa.favorito ? "★" : "☆"%>
                             </button>
 
                             <form action="/atividades/excluir" method="post">
                                 <input type="hidden" name="id_tarefa" value="<%= tarefa.id_atividade %>">
-                                <button type="submit" class="deleteBtn" title="Excluir tarefa">🗑️</button>
+                                <button 
+                                    type="submit" 
+                                    class="deleteBtn" 
+                                    title="Excluir tarefa" 
+                                    onclick="event.stopPropagation()"
+                                >
+                                🗑️
+                                </button>
                             </form>
 
                         </div>
@@ -106,8 +113,30 @@
                 </div>
             <% }  %>
 
-        </div>
+            <div id="modal" class="overlay" style="display: none;">
+                <div class="modal">
+                    <h2>Editar atividade</h2>
+                    <button onclick="fecharModal()">Fechar</button>
 
+                    <form id="editForm" method="POST" action="/atividades/editar">
+                        <input type="hidden" name="id_atividade" id="edit-id">
+
+                        <label>Título</label>
+                        <input type="text" name="titulo" id="edit-titulo">
+                        
+                        <label>Data</label>
+                        <input type="date" name="data" id="edit-data">
+
+                        <label>Descrição</label>
+                        <textarea name="descricao" id="edit-descricao"></textarea>
+
+                        <button type="submit">Salvar alterações</button>
+                        <button type="button" onclick="fecharModal()">Cancelar</button>
+                    </form>
+                </div>
+            </div>
+            
+        </div>
 
     </div>
 

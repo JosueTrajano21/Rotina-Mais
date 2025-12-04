@@ -1,6 +1,8 @@
+//  Ele tem as funcionalidades da área do Paciente
+
 const Atividade = require('../models/atividadesModel')
 
-    
+// Função que formata a data para a data Brasileira
 function formatarBr(data){
     const d = new Date(data)
 
@@ -11,6 +13,7 @@ function formatarBr(data){
     return `${dia}/${mes}/${ano}`
 } 
 
+// Função que verifica se a data está nesta semana
 function estaNaSemana(data){
     if (!data) return false
     const hoje = new Date()
@@ -26,6 +29,7 @@ function estaNaSemana(data){
     }
 }
 
+// Função que verifica se a data está neste mês
 function estaNoMes(data){
   if (!data) return false
     const hoje = new Date()
@@ -34,6 +38,8 @@ function estaNoMes(data){
 }
 
 module.exports = {
+
+    // Principal página, ela vai listar as tarefas e aplicar os filtros
     index: async (req, res) => {
         const id_paciente = req.session.user.id
         const filtro = req.query.filter || "Hoje"
@@ -42,6 +48,7 @@ module.exports = {
         // Busca as atividades do paciente
         const tarefas = await Atividade.listarPorPaciente(id_paciente)
 
+        // Formata a data para mostrar no front 
         tarefas.forEach(tarefa => {
             if(tarefa.data){
                 tarefa.dataFormatada = formatarBr(tarefa.data)
@@ -52,38 +59,27 @@ module.exports = {
 
         // Filtrar tarefas
         const tarefasFiltradas =  tarefas.filter(tarefa =>{
-            // Filter pq vai retornar os elementos correspondentes a condição
+    
             const hoje = Atividade.formatarDataParaMySQL(new Date())
 
-            if (filtro === "Sem data"){
-                return !(tarefa.data)
-            }
-            if (filtro === "Hoje"){
-                return Atividade.formatarDataParaMySQL(tarefa.data) === hoje
-            } 
-            if (filtro === "Semana"){
-                return  estaNaSemana(tarefa.data)
-            }
-            if (filtro === "Mês"){
-                return  estaNoMes(tarefa.data)
-            }
-            if (filtro === "Importantes"){
-                return tarefa.favorito === 1
-            }
-            if (filtro === "Vencidas"){
-                return Atividade.formatarDataParaMySQL(tarefa.data) < hoje && tarefa.completada === 0;
-            }
-            if (filtro === "Pendentes"){
-                return tarefa.completada === 0;
-            }
-            return true
+            if (filtro === "Sem data") return !tarefa.data
+            if (filtro === "Hoje") return Atividade.formatarDataParaMySQL(tarefa.data) === hoje
+            if (filtro === "Semana") return estaNaSemana(tarefa.data)
+            if (filtro === "Mês") return estaNoMes(tarefa.data)
+            if (filtro === "Importantes") return tarefa.favorito === 1
+            if (filtro === "Vencidas") return Atividade.formatarDataParaMySQL(tarefa.data) < hoje && tarefa.completada === 0
+            if (filtro === "Pendentes") return tarefa.completada === 0
+
+            return true // "Todas"
         })
 
+         // Itens do menu lateral
         const menuItems = [
             "Sem data", "Hoje", "Semana", "Mês",
             "Importantes", "Vencidas", "Pendentes", "Todas"
         ]
 
+        // Renderiza a página com os dados
         res.render("pages/atividades", {
             titulo: "Atividades",
             css: "atividades.css",
@@ -95,6 +91,7 @@ module.exports = {
         })
     },
 
+    // Cria uma nova tarefa
     criar: async (req, res) =>{
 
         const { titulo } = req.body
@@ -103,29 +100,8 @@ module.exports = {
         const data = new Date()
         const dataFormatada = Atividade.formatarDataParaMySQL(data) 
         console.log(dataFormatada)
-
-        
-
-        if (!titulo || titulo.trim() === '') {
-            const tarefa = await Atividade.listarPorPaciente(id_paciente)
-            const menuItems = [
-                "Sem data", "Hoje", "Semana", "Mês",
-                "Importantes", "Recorrentes", "Vencidas", "Todas"
-            ]
-            const selecionado = 'Hoje'
-            const tarefasFiltradas = tarefa
-
-            return res.render('pages/atividades', {
-                titulo: "Atividades",
-                css: "atividades.css",
-                tarefas: tarefas,
-                menuItems: menuItems,
-                selecionado: selecionado,
-                tarefasFiltradas: tarefasFiltradas,
-                error: 'Título é obrigatório!',
-            })
-        }
-
+ 
+        // Salva no banco
         await Atividade.criarAtivadade({
             id_paciente,
             titulo,
@@ -135,64 +111,51 @@ module.exports = {
         res.redirect('/atividades')
     },
 
-    
+     // Marca tarefa como concluída ou não
     marcarCompletada: async (req, res) => {
-        console.log(req.body)
 
         const { id, completada } = req.body
         
         console.log("Recebido:", req.body)
-
-        if(!id){
-            return res.status(400).json({ erro: "ID da tarefa é obrigatório." })
-        }
 
         await Atividade.marcarComoCompletada(id, completada)
         return res.json({ sucesso: true })
 
     },
 
+    // Exclui uma tarefa
     excluir: async (req, res) => {
-        const { id_tarefa } = req.body; 
+
+        const { id_tarefa } = req.body 
         const id_paciente = req.session.user.id
-        
-        const sucesso = await Atividade.excluirTarefa(id_tarefa, id_paciente);
 
-        if (!sucesso) {
-            const tarefas = await Atividade.listarPorPaciente(id_paciente);
+        Atividade.excluirTarefa(id_tarefa, id_paciente)
 
-            const menuItems = [
-                "Sem data", "Hoje", "Semana", "Mês",
-                "Importantes", "Vencidas", "Todas"
-            ];
-
-            const filtro = "Hoje";
-            const tarefasFiltradas = tarefas;
-
-            return res.render("pages/atividades", {
-                titulo: "Atividades",
-                css: "atividades.css",
-                tarefas,
-                menuItems,
-                filtro,
-                tarefasFiltradas,
-                selecionado: filtro,
-                error: "Erro ao excluir tarefa."
-            });
-        }
-
-        res.redirect("/atividades");
+        return res.redirect(`/atividades`)
     },
 
+    // Marca como favorita ou remove dos favoritos
     marcarFavorita: async (req, res) =>{
-        const { id, favorito } = req.body;
+        const { id, favorito } = req.body
 
-        if (!id) {
-            return res.status(400).json({ erro: "ID é obrigatório" });
+        await Atividade.marcarComoFavorita(id, favorito)
+        return res.json({ sucesso: true })
+    },
+
+    // Editar os dados da atividade
+    editar: async (req, res) =>{
+        const {id_atividade, titulo, data, descricao} = req.body
+        console.log(id_atividade, titulo, data, descricao)
+        
+        if (!titulo || titulo.trim() === "") {
+            console.log('Erro titulo vazio')
+            return res.redirect("/atividades")
         }
 
-        await Atividade.marcarComoFavorita(id, favorito);
-        return res.json({ sucesso: true });
+
+        await Atividade.editar(id_atividade, titulo, data, descricao)
+
+        return res.redirect("/atividades")
     }
 
 }
