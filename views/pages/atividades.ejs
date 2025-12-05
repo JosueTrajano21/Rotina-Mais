@@ -74,6 +74,7 @@
                                 type="checkbox"
                                 class="checkbox-tarefa"
                                 data-id="<%= tarefa.id_atividade %>"
+                                onclick="event.stopPropagation()"
                                 <%= tarefa.completada ? 'checked' : '' %>
                             />
 
